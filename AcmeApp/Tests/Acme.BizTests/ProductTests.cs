@@ -19,6 +19,7 @@ namespace Acme.Biz.Tests
             currentProduct.ProductName = "Saw";
             currentProduct.ProductId = 1;
             currentProduct.Description = "15-inch steel blade hand saw";
+            currentProduct.ProductVendor.CompanyName = "ABC Corp";
             var expected = "Hello Saw (1): 15-inch steel blade hand saw";
 
             // Act
@@ -35,6 +36,21 @@ namespace Acme.Biz.Tests
 
             // Act
             var actual = currentProduct.SayHello();
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ProductName_Format()
+        {
+            // Arrange
+            var currentProduct = new Product();
+            currentProduct.ProductName = "  Steel Hammer   ";
+
+            var expected = "Steel Hammer";
+
+            // Act
+            var actual = currentProduct.ProductName;
+
             // Assert
             Assert.AreEqual(expected, actual);
         }
